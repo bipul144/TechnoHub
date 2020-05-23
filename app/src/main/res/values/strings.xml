@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TechnoHub</string>
+    <string name="welcome">Welcome To Technohub</string>
+    <string name="UserEmailHint">E-mail</string>
+    <string name="UserPasswordHint">Password</string>
+    <string name="ButtonLogIn">LogIn</string>
+    <string name="LinkToSignUp">New User Register ?</string>
+</resources>
