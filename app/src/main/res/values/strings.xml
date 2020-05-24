@@ -5,4 +5,10 @@
     <string name="UserPasswordHint">Password</string>
     <string name="ButtonLogIn">LogIn</string>
     <string name="LinkToSignUp">New User Register ?</string>
+    <string name="SignUpButton">SignUp</string>
+    <string name="SignUpName">Name</string>
+    <string name="SignUpSemester">Semester</string>
+    <string name="SignUpBranch">Branch</string>
+    <string name="SignUpField">Field Of Interest</string>
+    <string name="SignUpContact">Contact No.</string>
 </resources>

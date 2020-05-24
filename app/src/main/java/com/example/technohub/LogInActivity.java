@@ -3,6 +3,7 @@ package com.example.technohub;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -37,13 +38,13 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
         edtEmailLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Message("Please Enter Your E-mail ID");
+                Message("Please Enter Your E-mail ID","I");
             }
         });
         edtPasswordLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Message("Please Enter Your Valid Password");
+                Message("Please Enter Your Valid Password","I");
             }
         });
     }
@@ -54,14 +55,14 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btnLogin:
                 if(edtEmailLogin.getText().toString().equals("")||edtPasswordLogin.getText().toString().equals("")){
 
-                    FancyToast.makeText(LogInActivity.this," Please Fill All The Fields ", Toast.LENGTH_LONG,FancyToast.ERROR,true).show();
+                    Message("Please Enter All The Fields Properly","E");
 
 
                 }else{
                     final ProgressDialog progressDialog = new ProgressDialog(this);
                     progressDialog.setMessage("Logging In !!");
                     progressDialog.show();
-                    ParseUser.logInInBackground(edtPasswordLogin.getText().toString(), edtPasswordLogin.getText().toString(), new LogInCallback() {
+                    ParseUser.logInInBackground(edtEmailLogin.getText().toString(), edtPasswordLogin.getText().toString(), new LogInCallback() {
                         @Override
                         public void done(ParseUser user, ParseException e) {
 
@@ -69,7 +70,7 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
                                 FancyToast.makeText(LogInActivity.this,user.get("username")+" is Logged in", Toast.LENGTH_LONG,FancyToast.ERROR,true).show();
 
                             }else {
-                                FancyToast.makeText(LogInActivity.this,e.getMessage(), Toast.LENGTH_LONG,FancyToast.ERROR,true).show();
+                                Message(e.getMessage(),"E");
 
                             }
                             progressDialog.dismiss();
@@ -82,6 +83,9 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
             case R.id.txtLinkToSignup:
 
+                Message("Lets go and Sign Up First :)","I");
+                Intent intent = new Intent(LogInActivity.this,SignUpActivity.class);
+                startActivity(intent);
 
 
 
@@ -90,8 +94,19 @@ public class LogInActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-   public void Message(String Message){
-        FancyToast.makeText(LogInActivity.this,Message,Toast.LENGTH_SHORT,FancyToast.INFO,true).show();
+   public void Message(String Message ,String act){
+        switch (act){
+            case "S":
+                FancyToast.makeText(LogInActivity.this,Message,Toast.LENGTH_SHORT,FancyToast.SUCCESS,true).show();
+                break;
+            case "E":
+                FancyToast.makeText(LogInActivity.this,Message,Toast.LENGTH_SHORT,FancyToast.ERROR,true).show();
+                break;
+            case "I":
+                FancyToast.makeText(LogInActivity.this,Message,Toast.LENGTH_SHORT,FancyToast.INFO,true).show();
+                break;
+        }
+
    }
 
 
